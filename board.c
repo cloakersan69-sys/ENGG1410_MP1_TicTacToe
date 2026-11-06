@@ -1,4 +1,5 @@
 #include "board.h"
+#include <stdio.h>
 
 void board_init(char board[MAX_SIZE][MAX_SIZE], int n){
     for (int i = 0; i < n; i++)
@@ -14,6 +15,22 @@ void board_init(char board[MAX_SIZE][MAX_SIZE], int n){
 
 void board_print(char board[MAX_SIZE][MAX_SIZE], int n){
 
+    printf(" ");
+    for (int c = 0; c < n; c++) {
+        printf("%4d", c);
+    }
+    printf("\n");
+    for (int r = 0; r < n; r++) {
+        printf("%2d ", r);
+        for (int c = 0; c < n; c++) {
+            char cell = ' ';
+            if ()
+            
+            printf(" %c ", board[r][c]);
+
+        }
+    printf("\n");
+    }
 }
 
 int move_is_valid(char board[MAX_SIZE][MAX_SIZE], int n, int row, int col){
