@@ -18,11 +18,11 @@ int main() {
 
     printf("1) Two players\n" "2) Play against the computer\n" "Mode: ");
     gameType = read_int();
-    
-    board_print(board, size);
 
     while (read_char() != 1) {
         board_init(board, size);
+
+        board_print(board, size);
 
     }
 

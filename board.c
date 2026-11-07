@@ -17,20 +17,33 @@ void board_print(char board[MAX_SIZE][MAX_SIZE], int n){
 
     printf(" ");
     for (int c = 0; c < n; c++) {
-        printf("%4d", c);
-    }
-    printf("\n");
-    for (int r = 0; r < n; r++) {
-        printf("%2d ", r);
-        for (int c = 0; c < n; c++) {
-            char cell = ' ';
-            if ()
-            
-            printf(" %c ", board[r][c]);
-
+        if (c == 0) {
+        printf("%5d", c);
         }
-    printf("\n");
+        else if (c >= 0) {
+        printf("%6d", c );
+        }
     }
+    
+    for (int r = 0; r < n; r++) {
+        printf("\n%2d ", r);
+        for (int c = 0; c < n; c++) {
+            char cell = board[r][c];
+            cell = ' ';
+            printf("%3c", cell);
+            if (c < n - 1) printf("%3s", "|");   
+            if (c == n - 1) printf("%3s", " ");
+        }
+        if (r < n - 1) {
+            printf("\n");
+            for (int c = 0; c < n; c++) {
+                if (c == 0) printf("%9s", "+----+");
+                else if (c > 0) printf("%6s", "-----+");
+                else if (r == n) printf("%6s", " ");
+            }
+        }
+    }
+    printf("\n");
 }
 
 int move_is_valid(char board[MAX_SIZE][MAX_SIZE], int n, int row, int col){
