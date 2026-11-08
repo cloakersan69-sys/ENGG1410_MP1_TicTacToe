@@ -37,9 +37,28 @@ int main() {
         {
             board_print(board,size);
             if (gameType == 2 && currentPlayer == 'O'){
-                
+                printf("Computer is moving...\n");
+                ai_move(board, size, 'O', 'X');
             } else{
+                int row,col;
+                printf("\nPlayer %c choice row: ", currentPlayer);
+                row = read_int();
+                printf("\nPlayer %c choice column: ", currentPlayer);
+                col = read_int();
 
+                while (!move_is_valid(board, size, row, col)) {
+                    if (row < 0 || row >= size || col < 0 || col >= size) {
+                        printf("(%d, %d) is off the board.\n", row, col);
+                    } else {
+                        printf("(%d, %d) is already taken.\n", row, col);
+                    }
+                    printf("Player %c choice row: ", currentPlayer);
+                    row = read_int();
+                    printf("Player %c choice column: ", currentPlayer);
+                    col = read_int();
+                }
+
+                board[row][col] = currentPlayer;
             }
 
             if(board_has_winner(board,size,currentPlayer)){
@@ -64,8 +83,15 @@ int main() {
         printf("Play again? (y/n): ");
         redo = read_char();
         while (redo!='y'&& redo!='n'){
-            prinf("\nPlease enter y or n: ");
+
+            printf("\nPlease enter y or n: ");
             redo = read_char();
+            printf("1) Two players\n" "2) Play against the computer\n" "Mode: ");
+            gameType = read_int();
+            while (gameType < 1 || gameType > 2) {
+                printf("Please enter a number within the range: ");
+                gameType = read_int();
+            }
         }
 
     } while (redo == 'y');
