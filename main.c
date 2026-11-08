@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include "board.h"
-#include "input.c"
 #include "input.h"
-#include "board.c"
+
 
 
 int main() {

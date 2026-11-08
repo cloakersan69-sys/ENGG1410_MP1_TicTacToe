@@ -32,7 +32,7 @@ void board_print(char board[MAX_SIZE][MAX_SIZE], int n){
         printf("\n%2d ", r);
         for (int c = 0; c < n; c++) {
             char cell = board[r][c]; //Initial Formatting needed for the rows
-            cell = ' ';
+            //cell = ' ';
             printf("%3c", cell);
             if (c < n - 1) printf("%3s", "|");   
             if (c == n - 1) printf("%3s", " ");
@@ -52,64 +52,62 @@ void board_print(char board[MAX_SIZE][MAX_SIZE], int n){
 }
 
 int move_is_valid(char board[MAX_SIZE][MAX_SIZE], int n, int row, int col){
-    if (!(((row>=1)&&(row<=n))&&((col>=1)&&(col<=n)))) //Checks if the row and column cant be within the bounds of the table
-    {
+    if (row < 0 || row >= n || col < 0 || col >= n) {
         return 0;
     }
-
-    if (board[row-1][col-1]==EMPTY){
-        return 1;
-    }else{
-        return 0;
-    }
-    
+    return board[row][col] == EMPTY;
 }
 
 int board_has_winner(char board[MAX_SIZE][MAX_SIZE], int n, char mark){
-    
+    //returns 1 if win and 0 if none
     int winningCheck;
 
-    /*checks rows*/
+    //checks rows
     for (int r = 0; r < n; r++) {
        
         winningCheck = 1;
         for (int c = 0; c < n; c++) {
             if (board[r][c] != mark) {
                 winningCheck = 0;
-                return 0;
-                
+                break;
             }
         }
+        if (winningCheck == 1) return 1;
     }
-    if (winningCheck == 1) return 1;
-
+    //check columns
     for (int c = 0; c < n; c++) {
         
         winningCheck = 1;
         for (int r = 0; r < n; r++) {
             if (board[r][c] != mark){
-            winningCheck = 0;
-            return 0;
+                winningCheck = 0;
+                break;
             }
+        }
+        if (winningCheck == 1) return 1;
+    }
+    
+    //check main diagonal
+    winningCheck = 1;
+    for (int r = 0; r < n; r++)
+    {
+        if (board[r][r]!=mark){
+            winningCheck=0;
+            break;
         }
     }
     if (winningCheck == 1) return 1;
-
-    for (int r = 0; r < n; r++) {
-    
-        if (board[r][r] != mark) {
-        return 0;
-        }
-        else if (board[r][n - 1 - r] != mark) {
-        return 0;
-
-        }
-        else {
-        winningCheck = 1;
-        break;
+    //check other diagonal
+    winningCheck = 1;
+    for (int r = 0; r < n; r++)
+    {
+        if (board[r][n-1-r]!=mark){
+            winningCheck=0;
+            break;
         }
     }
-    return 1;
+    if (winningCheck == 1) return 1;
+    return 0;
     
 }
 
@@ -119,19 +117,53 @@ int board_is_full(char board[MAX_SIZE][MAX_SIZE], int n){
 
     for (r = 0; r < n; r++) {
         for (c = 0; c < n; c++) {
-            if (board[r][c] != EMPTY) {
-                return 1;
-            }
-            else {
-            break;
+            if (board[r][c] == EMPTY) {
+                return 0;
             }
         }
 
     }
-    return 0;
+    return 1;
 
 }
 
 void ai_move(char board[MAX_SIZE][MAX_SIZE], int n, char ai_mark, char human_mark){
-
+    //Take a win if ones available
+    for (int r = 0; r < n; r++)
+    {
+        for (int c = 0; c < n; c++)
+        {
+            if (board[r][c]==EMPTY){
+                board[r][c] = ai_mark;
+                if (board_has_winner(board,n,ai_mark)){return;}
+                board[r][c] = EMPTY;
+            }
+        }
+    }
+    //Block any winning cells of the opponent
+    for (int r = 0; r < n; r++)
+    {
+        for (int c = 0; c < n; c++)
+        {
+            if (board[r][c]==EMPTY){
+                board[r][c]=human_mark;
+                if (board_has_winner(board,n,human_mark)){
+                    board[r][c]=ai_mark;
+                    return;
+                }
+                board[r][c]=EMPTY;
+            }
+        }
+    }
+    //Make the move on the first cell that isn't empty
+    for (int r = 0; r < n; r++)
+    {
+        for (int c = 0; c < n; c++)
+        {
+            if (board[r][c]==EMPTY){
+                board[r][c]=ai_mark;
+                return;
+            }
+        }
+    }
 }
