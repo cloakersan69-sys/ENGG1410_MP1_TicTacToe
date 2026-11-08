@@ -3,9 +3,24 @@
 #include "input.h"
 
 // William Bailey 1387068
-// Wrote the operations for board size, Game mode, describe functions: board, size, and game type
+// Wrote the operation checks for the variables: size, gameType (which is essentially the game mode)
 
-// Myles Leclrec 1391784
+/** Myles Leclerc 1391784
+ * Wrote the entire main loop of the game (everything past line 37)
+ * 
+ * the main loop of the game starts with the do-while loop which gets executed before and/or after each round 
+ * checking to see at the end if they want to play again or not. It then goes into the while loop where it checks 
+ * to see if the person is playing against another person or against the ai. 
+ *      Playing against AI: It prints that the ai is moving and calls the ai_move function when it is the AI's turn
+ *      Playing against a Person: When it is the persons turn, it asks for the row and column of the players move (making sure the move is valid) 
+ *      and executes the move.
+ * 
+ * It then checks each move to see if the move made by you or the other entity (AI or person) is a winning move, 
+ * or a move that results in a draw, and if not, it switches the current player to continue on making moves until 
+ * one of those two end conditions met. Once it is met it prints whether it is a win (also says which person won) 
+ * or a draw before printing the scores for the amount of wins, losses and draws. It then asks you if you want to play again.
+ * 
+*/
 
 int main() {
 
