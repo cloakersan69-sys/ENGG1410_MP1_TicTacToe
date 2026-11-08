@@ -8,8 +8,10 @@ int main() {
 
     int size;
     char board[MAX_SIZE][MAX_SIZE];
+    int xWins = 0, oWins = 0, draws = 0;
     int gameType;
-
+    char redo, currentPlayer;
+    int roundOver;
 
     printf("== Tic-Tac-Toe ==\n");
     printf("Board Size (3-10): ");
@@ -27,13 +29,48 @@ int main() {
         gameType = read_int();
     }
 
+    do{
+        currentPlayer='X';
+        roundOver=0;
+        board_init(board, size);
+        while (!roundOver)
+        {
+            board_print(board,size);
+            if (gameType == 2 && currentPlayer == 'O'){
+                
+            } else{
+
+            }
+
+            if(board_has_winner(board,size,currentPlayer)){
+                board_print(board,size);
+                printf("%c wins!\n",currentPlayer);
+                if (currentPlayer == 'X'){
+                    xWins+=1;
+                }else{
+                    oWins+=1;
+                }
+                roundOver=1;
+           } else if (board_is_full(board,size)){
+                board_print(board,size);
+                printf("It's a draw!\n");
+                draws+=1;
+                roundOver=1;
+           } else{
+                currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
+           }
+        }
+        printf("Score -> X:%d, O: %d, Draws: %d\n",xWins,oWins,draws);
+        printf("Play again? (y/n): ");
+        redo = read_char();
+        while (redo!='y'&& redo!='n'){
+            prinf("\nPlease enter y or n: ");
+            redo = read_char();
+        }
+
+    } while (redo == 'y');
     
-    board_init(board, size);
 
     board_print(board, size);
     printf("\n");
-
-    
-
-
 }
