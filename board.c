@@ -41,7 +41,7 @@ void board_print(char board[MAX_SIZE][MAX_SIZE], int n){
         printf("\n%2d ", r);
         for (int c = 0; c < n; c++) {
             char cell = board[r][c]; //Initial Formatting needed for the rows
-            cell = ' ';
+            // cell = ' ';
             printf("%3c", cell);
             if (c < n - 1) printf("%3s", "|");   
             if (c == n - 1) printf("%3s", " ");
