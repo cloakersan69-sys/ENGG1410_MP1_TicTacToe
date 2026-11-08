@@ -2,7 +2,10 @@
 #include "board.h"
 #include "input.h"
 
+// William Bailey 1387068
+// Wrote the operations for board size, Game mode, describe functions: board, size, and game type
 
+// Myles Leclrec 1391784
 
 int main() {
 

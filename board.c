@@ -4,10 +4,10 @@
 // William Bailey 1387068.
 // Wrote the functions for board_print, board_has_winner, and board_is_full.
 
-// Myles Leclerc #StudentId
-// (Worked ON)
-
-/* (Code description)*/
+/** Myles Leclerc 1391784
+ * Wrote the board_init, move_is_valid, and ai_move functions.
+ * 
+ * (Code description)*/
 
 
 void board_init(char board[MAX_SIZE][MAX_SIZE], int n){
