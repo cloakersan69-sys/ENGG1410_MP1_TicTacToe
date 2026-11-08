@@ -87,6 +87,7 @@ int main() {
             printf("\nPlease enter y or n: ");
             redo = read_char();
         }
+        if (redo=='n'){break;}
         printf("1) Two players\n" "2) Play against the computer\n" "Mode: ");
         gameType = read_int();
         while (gameType < 1 || gameType > 2) {
@@ -95,8 +96,4 @@ int main() {
         }
 
     } while (redo == 'y');
-    
-
-    board_print(board, size);
-    printf("\n");
 }
