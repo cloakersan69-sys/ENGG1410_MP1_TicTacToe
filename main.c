@@ -86,12 +86,12 @@ int main() {
 
             printf("\nPlease enter y or n: ");
             redo = read_char();
-            printf("1) Two players\n" "2) Play against the computer\n" "Mode: ");
+        }
+        printf("1) Two players\n" "2) Play against the computer\n" "Mode: ");
+        gameType = read_int();
+        while (gameType < 1 || gameType > 2) {
+            printf("Please enter a number within the range: ");
             gameType = read_int();
-            while (gameType < 1 || gameType > 2) {
-                printf("Please enter a number within the range: ");
-                gameType = read_int();
-            }
         }
 
     } while (redo == 'y');
