@@ -1,6 +1,15 @@
 #include "board.h"
 #include <stdio.h>
 
+// William Bailey 1387068.
+// Wrote the functions for board_print, board_has_winner, and board_is_full.
+
+// Myles Leclerc #StudentId
+// (Worked ON)
+
+/* (Code description)*/
+
+
 void board_init(char board[MAX_SIZE][MAX_SIZE], int n){
     for (int i = 0; i < n; i++)
     {
@@ -27,12 +36,12 @@ void board_print(char board[MAX_SIZE][MAX_SIZE], int n){
         }
     }
     
-    // Starts printing out the rows needs
+    // Starts printing out the rows needed
     for (int r = 0; r < n; r++) {
         printf("\n%2d ", r);
         for (int c = 0; c < n; c++) {
             char cell = board[r][c]; //Initial Formatting needed for the rows
-            //cell = ' ';
+            cell = ' ';
             printf("%3c", cell);
             if (c < n - 1) printf("%3s", "|");   
             if (c == n - 1) printf("%3s", " ");
@@ -100,7 +109,8 @@ int board_has_winner(char board[MAX_SIZE][MAX_SIZE], int n, char mark){
     //check other diagonal
     winningCheck = 1;
     for (int r = 0; r < n; r++)
-    {
+    {   /* Checks the other diagonal by subtracting total board size by 1 and,
+        subtracting the current row index to get the correct column index for each row. */
         if (board[r][n-1-r]!=mark){
             winningCheck=0;
             break;
@@ -115,6 +125,8 @@ int board_is_full(char board[MAX_SIZE][MAX_SIZE], int n){
     int r;
     int c;
 
+    /*Checks if all cells in the board are empty by iterating through each column once per row.
+    Returns 0 is anything remains empty, if not returns 1 */
     for (r = 0; r < n; r++) {
         for (c = 0; c < n; c++) {
             if (board[r][c] == EMPTY) {
