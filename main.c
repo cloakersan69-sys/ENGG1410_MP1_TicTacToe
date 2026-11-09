@@ -114,6 +114,9 @@ int main() {
         }
 
     } while (redo == 'y');
+    if (redo != 'y') {
+        printf("Thanks for playing!\n");
+    }
 
     printf("Thanks for playing!\n");
 }
