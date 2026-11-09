@@ -114,4 +114,8 @@ int main() {
         }
 
     } while (redo == 'y');
+
+    
+    board_print(board, size);
+    printf("\n");
 }
