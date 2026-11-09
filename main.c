@@ -61,7 +61,7 @@ int main() {
                 int row,col;
                 printf("\nPlayer %c choice row: ", currentPlayer);
                 row = read_int();
-                printf("\nPlayer %c choice column: ", currentPlayer);
+                printf("\nPlayer %c choice column: \n", currentPlayer);
                 col = read_int();
 
                 while (!move_is_valid(board, size, row, col)) {
@@ -72,7 +72,7 @@ int main() {
                     }
                     printf("Player %c choice row: ", currentPlayer);
                     row = read_int();
-                    printf("Player %c choice column: ", currentPlayer);
+                    printf("Player %c choice column: \n", currentPlayer);
                     col = read_int();
                 }
 
@@ -97,7 +97,7 @@ int main() {
                 currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
            }
         }
-        printf("Score -> X:%d, O: %d, Draws: %d\n",xWins,oWins,draws);
+        printf("Score -> X: %d, O: %d, Draws: %d\n",xWins,oWins,draws);
         printf("Play again? (y/n): ");
         redo = read_char();
         while (redo!='y'&& redo!='n'){
@@ -115,7 +115,5 @@ int main() {
 
     } while (redo == 'y');
 
-    
-    board_print(board, size);
-    printf("\n");
+    printf("Thanks for playing!\n");
 }
