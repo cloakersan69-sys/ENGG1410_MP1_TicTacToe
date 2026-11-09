@@ -97,7 +97,7 @@ int main() {
                 currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
            }
         }
-        printf("Score -> X:%d, O: %d, Draws: %d\n",xWins,oWins,draws);
+        printf("Score -> X: %d, O: %d, Draws: %d\n",xWins,oWins,draws);
         printf("Play again? (y/n): ");
         redo = read_char();
         while (redo!='y'&& redo!='n'){
@@ -114,8 +114,9 @@ int main() {
         }
 
     } while (redo == 'y');
+    if (redo != 'y') {
+        printf("Thanks for playing!\n");
+    }
 
-    
-    board_print(board, size);
-    printf("\n");
+
 }
